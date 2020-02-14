@@ -1,14 +1,11 @@
 # Backend
 ## How to run
-The main way to run the backend app is to set the environment variable `FLASK_APP=backend.py` and call
-```shell script
-flask run
-```
-To run all the unit tests you can use the command `test`:
+The main way to run the backend app is by by running the script `backend.py`.
+
+To run all the unit tests in one go you can set the environment variable `FLASK_APP=backend.py` and call
 ```shell script
 flask test
 ```
-To debug some application error in an IDE you can start the application by running the script `backend.py`
 ## Configuration
 The backend application can be started in test or development mode. You can specify the required mode by setting environment variable **FLASK_CONFIG** to `'development'` or `'testing'`. By default the application starts in development mode.
 
