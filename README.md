@@ -14,3 +14,9 @@ Running the application in development mode requires the following environment v
 * **CONSUMER_SECRET** - Twitter application secret
 * **ACCESS_TOKEN** - Twitter access token
 * **ACCESS_TOKEN_SECRET** - Twitter access token secret
+# Frontend
+## How to run
+```shell script
+npm start
+```
+The application would be available on `http://localhost:3000/`
