@@ -31,6 +31,9 @@ class WebSocketListener(StreamListener):
         rooms = socketio.server.manager.rooms
         return self.namespace in rooms and self.sid in rooms[self.namespace].keys()
 
+    def on_error(self, status_code):
+        print('tweepy streaming error. Status: %s' % status_code)
+
 
 @socketio.on('subscribe', namespace='/tweet_streaming')
 def on_subscribe(params):
