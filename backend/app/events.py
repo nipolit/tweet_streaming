@@ -15,7 +15,7 @@ class WebSocketListener(StreamListener):
     def on_data(self, raw_data):
         tweet = self._parse_tweet(raw_data)
         socketio.emit('tweet', tweet, namespace=self.namespace, room=self.sid)
-        return True
+        return self._is_still_subscribed()
 
     @staticmethod
     def _parse_tweet(raw_data):
@@ -23,6 +23,13 @@ class WebSocketListener(StreamListener):
         author = data['user']['name']
         text = data['text']
         return dict(author=author, text=text)
+
+    def _is_still_subscribed(self):
+        # Not a very clean way to find out, if the subscriber is still listening.
+        # It's better to check via a callback function, but it leads to an error because there's no request available
+        # at the moment when socketio.emit is called.
+        rooms = socketio.server.manager.rooms
+        return self.namespace in rooms and self.sid in rooms[self.namespace].keys()
 
 
 @socketio.on('subscribe', namespace='/tweet_streaming')
