@@ -20,3 +20,9 @@ Running the application in development mode requires the following environment v
 npm start
 ```
 The application would be available on `http://localhost:3000/`
+
+To run frontend unit tests call
+```shell script
+npm test
+```
+Though, at the moment, frontend has only one basic test.
