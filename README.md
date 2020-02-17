@@ -1,6 +1,16 @@
 # Backend
 ## How to run
 The main way to run the backend app is by by running the script `backend.py`.
+The full list of necessary commands on win32. On other systems it should be similar:
+```shell script
+py -m venv venv
+venv\Scripts\activate
+pip install -r backend\requirements.txt
+...
+{ Set environment variables CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET }
+...
+py backend\backend.py
+```
 
 To run all the unit tests in one go you can set the environment variable `FLASK_APP=backend.py` and call
 ```shell script
