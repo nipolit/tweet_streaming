@@ -1,17 +1,23 @@
 import React, {Component} from "react";
+import PropTypes from 'prop-types';
 import io from "socket.io-client";
+import Toast from "react-bootstrap/Toast";
 
 class Tweets extends Component {
+    static propTypes = {
+        track: PropTypes.string.isRequired
+    };
+
     constructor(props) {
         super(props);
-        this.socket = io('http://localhost:5000/tweet_streaming', {transports: ['websocket']})
+        this.socket = io('http://localhost:5000/tweet_streaming')
         this.socket.on('tweet', tweet => this.setState(state => ({
-            tweets: [...state.tweets, tweet]
+            tweets: [tweet, ...state.tweets]
         })));
     }
 
     componentDidMount() {
-        this.socket.emit('subscribe', {track: ['python']});
+        this.socket.emit('subscribe', {track: [this.props.track]});
     }
 
     componentWillUnmount() {
@@ -24,13 +30,16 @@ class Tweets extends Component {
 
     render() {
         return (
-            <div>
-                <ul>
-                    {this.state.tweets.map((tweet, index) => {
-                        return <li key={index}>{tweet['author'] + ': ' + tweet['text']}</li>
-                    })}
-                </ul>
-            </div>
+            this.state.tweets.map((tweet, index) => {
+                return (
+                    <Toast>
+                        <Toast.Header closeButton={false}>
+                            <strong className="mr-auto">{tweet['author']}</strong>
+                        </Toast.Header>
+                        <Toast.Body>{tweet['text']}</Toast.Body>
+                    </Toast>
+                );
+            })
         );
     }
 }
