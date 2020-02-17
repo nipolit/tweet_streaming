@@ -1,11 +1,11 @@
 import React from 'react';
-import Tweets from './Tweets'
 import './App.css';
+import TrackTopic from "./TrackTopic";
 
 function App() {
   return (
     <div className="App">
-      <Tweets track="python" />
+      <TrackTopic />
     </div>
   );
 }

@@ -32,7 +32,7 @@ class Tweets extends Component {
         return (
             this.state.tweets.map((tweet, index) => {
                 return (
-                    <Toast>
+                    <Toast key={index}>
                         <Toast.Header closeButton={false}>
                             <strong className="mr-auto">{tweet['author']}</strong>
                         </Toast.Header>
